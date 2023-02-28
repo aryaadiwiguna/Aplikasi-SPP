@@ -25,49 +25,49 @@
 
 <body>
 
-    
-                <?php if (isset($data['pilihanData'])) : ?>
-                    <div class="card shadow mb-4 mt-5">
-                        <div class="card-header py-2 d-flex align-items-center justify-content-between">
-                            <h6 class="m-0 py-2 font-weight-bold text-primary d-inline-block">Result</h6>
-                            <?php if (count($data['pilihanData']) != 0) : ?>
-                                <a onclick="window.print()"  class="btn btn-success btn-circle btn-sm my-1">
-                                    <i class="fas fa-print"></i>
-                                </a>
-                            <?php endif
-                            ?>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <?php if (count($data['pilihanData']) != 0) : ?>
-                                <table class="table table-bordered" width="100%" cellspacing="0">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>Nama Siswa</th>
-                                            <?php foreach ($data['bulan'] as $bulan) : ?>
-                                                <th><?= $bulan ?></th>
-                                            <?php endforeach; ?>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($data['pilihanData'] as $key => $d) : ?>
-                                            <tr>
-                                                <?php $identitas = explode('|', $key) ?>
-                                                <td><span class="font-weight-bold"><?= $identitas[0] ?></span><br><?= $identitas[1] ?></td>
-                                                <?php foreach ($data['bulan'] as $key => $bulan) : ?>
-                                                    <?php if (in_array($key, $d)) : ?>
-                                                        <td class="text-center"><i class="fas fa-check-circle text-success"></i></td>
-                                                    <?php else : ?>
-                                                        <td class="text-center"><i class="fas fa-times-circle text-danger"></i></td>
-                                                    <?php endif; ?>
-                                                <?php endforeach; ?>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                        <?php endif; ?>
-                    </div>
-                <?php endif; ?>
+
+    <?php if (isset($data['pilihanData'])) : ?>
+        <div class="card shadow mb-4 mt-5">
+            <div class="card-header py-2 d-flex align-items-center justify-content-between">
+                <h6 class="m-0 py-2 font-weight-bold text-primary d-inline-block">Result</h6>
+                <?php if (count($data['pilihanData']) != 0) : ?>
+                    <a onclick="window.print()" class="btn btn-success btn-circle btn-sm my-1">
+                        <i class="fas fa-print"></i>
+                    </a>
+                <?php endif
+                ?>
+            </div>
+        </div>
+        <div class="card-body">
+            <?php if (count($data['pilihanData']) != 0) : ?>
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Nama Siswa</th>
+                            <?php foreach ($data['bulan'] as $bulan) : ?>
+                                <th><?= $bulan ?></th>
+                            <?php endforeach; ?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data['pilihanData'] as $key => $d) : ?>
+                            <tr>
+                                <?php $identitas = explode('|', $key) ?>
+                                <td><span class="font-weight-bold"><?= $identitas[0] ?></span><br><?= $identitas[1] ?></td>
+                                <?php foreach ($data['bulan'] as $key => $bulan) : ?>
+                                    <?php if (in_array($key, $d)) : ?>
+                                        <td class="text-center"><i class="fas fa-check-circle text-success"></i></td>
+                                    <?php else : ?>
+                                        <td class="text-center"><i class="fas fa-times-circle text-danger"></i></td>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
 
     <!-- Bootstrap core JavaScript-->
     <script src="<?= BASE_URL ?>/vendor/jquery/jquery.min.js"></script>
