@@ -53,6 +53,34 @@ class Siswa_model
         }
     }
 
+    // public function updateSiswa($data)
+    // {
+    //     try {
+    //         $this->db->beginTransaction();
+    //         $rowCount = 0;
+    //         $this->db->query("UPDATE pengguna SET username = :username WHERE id_pengguna = :id_pengguna")
+    //             ->bind('username', $data['username'])
+    //             ->bind('id_pengguna', $data['id_pengguna'])
+    //             ->execute();
+    //         $rowCount += $this->db->rowCount();
+    //         $this->db->query("UPDATE siswa SET nisn = :nisn, nis = :nis, nama = :nama, alamat = :alamat, telepon = :telepon, id_kelas = :id_kelas, id_pembayaran = :id_pembayaran WHERE id_siswa = :id_siswa")
+    //             ->bind('nisn', $data['nisn'])
+    //             ->bind('nis', $data['nis'])
+    //             ->bind('nama', $data['nama'])
+    //             ->bind('alamat', $data['alamat'])
+    //             ->bind('telepon', $data['telepon'])
+    //             ->bind('id_kelas', $data['id_kelas'])
+    //             ->bind('id_pembayaran', $data['id_pembayaran'])
+    //             ->execute();
+    //         $this->db->commit();
+    //         $rowCount += $this->db->rowCount();
+    //         return $rowCount;
+    //     } catch (PDOException $e) {
+    //         $this->db->rollback();
+    //         return false;
+    //     }
+    // }
+
     public function updateSiswa($data)
     {
         try {
@@ -71,6 +99,7 @@ class Siswa_model
                 ->bind('telepon', $data['telepon'])
                 ->bind('id_kelas', $data['id_kelas'])
                 ->bind('id_pembayaran', $data['id_pembayaran'])
+                ->bind('id_siswa', $data['id_kelas'])
                 ->execute();
             $this->db->commit();
             $rowCount += $this->db->rowCount();
@@ -84,7 +113,7 @@ class Siswa_model
     public function getSiswaByUsername($username)
     {
         return $this->db->query("SELECT * FROM v_siswa WHERE username = :username")
-        ->bind('username', $username)
-        ->single();
+            ->bind('username', $username)
+            ->single();
     }
 }

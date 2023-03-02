@@ -44,27 +44,13 @@ function bulan($bulan_pilihan = null)
 
     if ($bulan_pilihan == null) {
         return $bulan;
-    } 
+    }
 
     return $bulan[$bulan_pilihan];
 }
 
-function bulanAngka()
+function backToPrev()
 {
-    $bulan = [
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        '10',
-        '11',
-        '12'
-    ];
-
-    return $bulan;
+    echo "<script>window.history.back()</script>";
+    exit;
 }

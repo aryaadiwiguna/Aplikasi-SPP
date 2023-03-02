@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card mt-3">
             <div class="card-header">Daftar Siswa</div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -21,7 +21,7 @@
                                 <th>Tahun Ajaran</th>
                                 <th>Nominal</th>
                                 <th>Aksi</th>
-                            </tr>
+                            </tr>   
                         </thead>
                         <tbody>
                             <?php foreach($data['siswa'] as $s ) : ?>
@@ -34,8 +34,8 @@
                                     <td><?= $s['tahun_ajaran'] ?></td>
                                     <td><?= $s['nominal'] ?></td>
                                     <td>
-                                        <a href="<?= BASE_URL ?>/<?= $s['id_siswa'] ?>" class="btn btn-warning">Edit</a>
-                                        <form action="<?= BASE_URL ?>/dashboard/destroySiswa/<?= $s['id_siswa'] ?>" class="d-inline" method="post">
+                                        <a href="<?= BASE_URL ?>/dashboard/editSiswa/<?= $s['id_siswa'] ?>" class="btn btn-warning">Edit</a>
+                                        <form action="<?= BASE_URL ?>/dashboard/destroySiswa/<?= $s['id_pengguna'] ?>" class="d-inline" method="post">
                                             <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')">Hapus</button>
                                         </form>
                                     </td>

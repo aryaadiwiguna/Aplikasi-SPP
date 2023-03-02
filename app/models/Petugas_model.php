@@ -72,4 +72,9 @@ class Petugas_model
         ->bind('username', $username)
         ->single();
     }
+
+    public function countPetugas()
+    {
+        return $this->db->query("SELECT COUNT(*) as count FROM petugas")->single()['count'];
+    }
 }

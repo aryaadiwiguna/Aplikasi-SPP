@@ -34,10 +34,10 @@ class Pembayaran_model
     public function updatePembayaran($data)
     {
         $this->db->query("UPDATE {$this->table} SET tahun_ajaran = :tahun_ajaran, nominal = :nominal WHERE id_pembayaran = :id_pembayaran")
-        ->bind('tahun_ajaran', $data['tahun_ajaran'])
-        ->bind('nominal', $data['nominal'])
-        ->bind('id_pembayaran', $data['id_pembayaran'])
-        ->execute();
+            ->bind('tahun_ajaran', $data['tahun_ajaran'])
+            ->bind('nominal', $data['nominal'])
+            ->bind('id_pembayaran', $data['id_pembayaran'])
+            ->execute();
 
         return $this->db->rowCount();
     }
@@ -45,9 +45,14 @@ class Pembayaran_model
     public function deletePembayaran($id)
     {
         $this->db->query("DELETE FROM {$this->table} WHERE id_pembayaran = :id_pembayaran")
-        ->bind('id_pembayaran', $id)
-        ->execute();
+            ->bind('id_pembayaran', $id)
+            ->execute();
 
         return $this->db->rowCount();
+    }
+
+    public function countPembayaran()
+    {
+        return $this->db->query("SELECT COUNT(*) as count FROM pembayaran")->single()['count'];
     }
 }

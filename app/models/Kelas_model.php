@@ -33,6 +33,15 @@ class Kelas_model
         return $this->db->rowCount();
     }
 
+    // public function addKelas($data)
+    // {
+    //     $this->db->query("INSERT INTO {$this->table} VALUES (NULL, :nama, :kompetensi_keahlian)")
+    //         ->binds(['nama' => $data['nama'], 'kompetensi_keahlian' => $data['kompetensi_keahlian']])
+    //         ->execute();
+
+    //     return $this->db->rowCount();
+    // }
+
     public function updateKelas($data)
     {
         $this->db->query("UPDATE {$this->table} SET nama = :nama, kompetensi_keahlian = :kompetensi_keahlian WHERE id_kelas = :id_kelas")
@@ -51,5 +60,10 @@ class Kelas_model
             ->execute();
 
         return $this->db->rowCount();
+    }
+
+    public function countKelas()
+    {
+        return $this->db->query("SELECT COUNT(*) as count FROM kelas")->single()['count'];
     }
 }

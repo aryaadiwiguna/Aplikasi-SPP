@@ -96,4 +96,23 @@ class Database
     {
         return $this->dbh->lastInsertId();
     }
+
+    public function binds($data)
+    {
+        $type = null;
+
+        foreach ($data as $key => $d) {
+            if (is_int($d)) {
+                $type = PDO::PARAM_INT;
+            } else if (is_bool($d)) {
+                $type = PDO::PARAM_BOOL;
+            } else if (is_null($d)) {
+                $type = PDO::PARAM_NULL;
+            } else {
+                $type = PDO::PARAM_STR;
+            }
+            $this->stmt->bindValue($key, $d, $type);
+        }
+        return $this;
+    }
 }

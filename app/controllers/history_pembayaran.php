@@ -18,4 +18,4 @@ class history_pembayaran extends Controller
         $this->view('siswa/history', $data);
         $this->view('templates/footer');
     }
-}
+}   

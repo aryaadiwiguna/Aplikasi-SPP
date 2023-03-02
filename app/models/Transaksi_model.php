@@ -51,4 +51,5 @@ class Transaksi_model
         ->resultSet();
     }
 
+
 }

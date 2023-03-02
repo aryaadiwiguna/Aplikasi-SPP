@@ -35,7 +35,7 @@ class Login extends Controller
         } else if ($dataUser['role'] == 2) {
             $_SESSION['role'] = 2;
             $_SESSION['id_petugas'] = $dataUser['id_petugas'];
-            redirect('/dashboard/transaksi');
+            redirect('/dashboard');
         } else {
             $_SESSION['role'] = 3;
             $_SESSION['id_siswa'] = $dataUser['id_siswa'];
