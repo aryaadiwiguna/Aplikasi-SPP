@@ -34,14 +34,14 @@
                                     <?php if (array_key_exists($key, $data['bulan_sorted'])) : ?>
                                         <div class="card-body">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?= $v ?></div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $data['bulan_sorted'][$key]['nominal'] ?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $data['siswa']['nominal'] ?></div>
                                         </div>
                                         <input type="checkbox" width="100%" class="btn-bayar" checked disabled>
                                         <button class="btn-bayar-disabled">Sudah Bayar</button>
                                     <?php else : ?>
                                         <div class="card-body">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?= $v ?></div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $data['pembayaran']['nominal'] ?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $data['siswa']['nominal'] ?></div>
                                         </div>
                                         <input type="checkbox" name="bulan_dibayar[]" width="100%" class="btn-bayar" value="<?= $key ?>">
                                         <button class="btn-bayar-asli">Bayar</button>
