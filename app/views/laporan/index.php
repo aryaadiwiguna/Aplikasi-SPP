@@ -27,17 +27,13 @@
 
 
     <?php if (isset($data['pilihanData'])) : ?>
-        <div class="card shadow mb-4 mt-5">
-            <div class="card-header py-2 d-flex align-items-center justify-content-between">
-                <h6 class="m-0 py-2 font-weight-bold text-primary d-inline-block">Result</h6>
-                <?php if (count($data['pilihanData']) != 0) : ?>
-                    <a onclick="window.print()" class="btn btn-success btn-circle btn-sm my-1">
-                        <i class="fas fa-print"></i>
-                    </a>
-                <?php endif
-                ?>
+        <a onclick="window.print()">
+            <div class="card shadow mb-4 mt-5 mx-4">
+                <div class="card-header py-2 d-flex align-items-center justify-content-between">
+                    <h6 class="m-0 py-2 font-weight-bold text-primary d-inline-block">Laporan Pembayaran Siswa</h6>
+                </div>
             </div>
-        </div>
+        </a>
         <div class="card-body">
             <?php if (count($data['pilihanData']) != 0) : ?>
                 <table class="table table-bordered" width="100%" cellspacing="0">

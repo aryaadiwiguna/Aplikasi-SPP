@@ -101,18 +101,19 @@ class Database
     {
         $type = null;
 
-        foreach ($data as $key => $d) {
-            if (is_int($d)) {
+        foreach ($data as $key => $v) {
+            if (is_int($v)) {
                 $type = PDO::PARAM_INT;
-            } else if (is_bool($d)) {
+            } else if (is_bool($v)) {
                 $type = PDO::PARAM_BOOL;
-            } else if (is_null($d)) {
+            } else if (is_null($v)) {
                 $type = PDO::PARAM_NULL;
             } else {
                 $type = PDO::PARAM_STR;
             }
-            $this->stmt->bindValue($key, $d, $type);
+            $this->stmt->bindValue($key, $v, $type);
         }
         return $this;
     }
+
 }

@@ -17,21 +17,23 @@ class Transaksi_model
 
     public function addTransaksi($data)
     {
-        $rawData = $data;
 
-        unset($data['id_siswa']);
-        unset($data['id_pembayaran']);
-        
-        $year = date('Y');
+        $tahun_ajaran = explode('/', $data['tahun_bayar']);  
 
-        foreach ($data['bulan_dibayar'] as $d) {
-            $this->db->query("INSERT INTO {$this->table} VALUES (NULL, NOW(), :bulan_dibayar, :tahun_dibayar, :id_siswa, :id_petugas, :id_pembayaran)")
-                ->bind('bulan_dibayar', $d)
-                ->bind('tahun_dibayar', "$year")
-                ->bind('id_siswa', $rawData['id_siswa'])
-                ->bind('id_petugas', $_SESSION['id_petugas'])
-                ->bind('id_pembayaran', $rawData['id_pembayaran'])
-                ->execute();
+        foreach ($data['bulan_dibayar'] as $dt) {
+            if ($dt >= 7 && $dt <= 12) {
+                $tahun_bayar = $tahun_ajaran[0];
+            } else {
+                $tahun_bayar = $tahun_ajaran[1];
+            }
+
+           $this->db->query("INSERT INTO transaksi VALUES (NULL, NOW(), :bulan, :tahun, :id_siswa, :id_petugas, :id_pembayaran)")
+           ->bind('bulan', $dt)
+           ->bind('tahun', $tahun_bayar)
+           ->bind('id_siswa', $data['id_siswa'])
+           ->bind('id_petugas', $_SESSION['id_petugas'])
+           ->bind('id_pembayaran', $data['id_pembayaran'])
+           ->execute();
         }
 
         return $this->db->rowCount();

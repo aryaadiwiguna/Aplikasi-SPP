@@ -11,7 +11,7 @@ class Dashboard extends Controller
 
         if ($_SESSION['role'] != '1') {
             if ($_SESSION['role'] != '2') {
-                redirect('/login');
+                backToPrev();
             }
         }
     }
@@ -19,6 +19,8 @@ class Dashboard extends Controller
 
     public function index()
     {
+        $id = $_SESSION['id_petugas'];
+
         $data['title'] = 'Dashboard';
         $data['siswa'] = $this->model('Kelas_model')->countKelas();
         $data['petugas'] = $this->model('Petugas_model')->countPetugas();
@@ -224,7 +226,7 @@ class Dashboard extends Controller
     public function updateSiswa()
     {
         Middleware::setAllowed('1');
-        if ($this->model('Siswa_model')->updateSiswa($_POST) > 0 ){
+        if ($this->model('Siswa_model')->updateSiswa($_POST) > 0) {
             Flasher::set('success', 'Data Siswa Berhasil Diubah');
             redirect('/dashboard/siswa');
         }
@@ -233,7 +235,7 @@ class Dashboard extends Controller
     public function destroySiswa($id)
     {
         Middleware::setAllowed('1');
-        if ($this->model('Pengguna_model')->deletePengguna($id) > 0){
+        if ($this->model('Pengguna_model')->deletePengguna($id) > 0) {
             Flasher::set('success', 'Data Siswa Berhasil Dihapus');
             redirect('/dashboard/siswa');
         }
@@ -331,56 +333,21 @@ class Dashboard extends Controller
         $data = [
             'title' => 'Transaksi Siswa',
             'siswa' => $this->model('Siswa_model')->getDataByID($id),
-            'bulan' => $this->model('Transaksi_model')->getBulanByIdTransaksiSiswa($id)
+            'bulan_dibayar' => $this->model('Transaksi_model')->getTransaksiByIdSiswa($id)
         ];
 
-        $data['dataBulan'] = [
-            'Januari' => [
-                'Januari', 1
-            ],
-            'Februari' => [
-                'Februari', 2
-            ],
-            'Maret' => [
-                'Maret', 3
-            ],
-            'April' => [
-                'April', 4
-            ],
-            'Mei' => [
-                'Mei', 5
-            ],
-            'Juni' => [
-                'Juni', 6
-            ],
-            'Juli' => [
-                'Juli', 7
-            ],
-            'Agustus' => [
-                'Agustus', 8
-            ],
-            'September' => [
-                'September', 9
-            ],
-            'Oktober' => [
-                'Oktober', 10
-            ],
-            'November' => [
-                'November', 11
-            ],
-            'Desember' => [
-                'Desember', 12
-            ],
+        $data['nama_bulan'] = NAMA_BULAN;
 
-        ];
+        // var_dump($data['nama_bulan']);
+        // die;
 
-        $bulan_dibayar = [];
+        $data['bulan_sorted'] = [];
 
-        foreach ($data['bulan'] as $bulan) {
-            array_push($bulan_dibayar, $bulan['bulan_dibayar']);
+        foreach ($data['bulan_dibayar'] as $bd) {
+            $data['bulan_sorted'][$bd['bulan_dibayar']] = ['nominal' => $bd['nominal'], 'tahun_ajaran' => $bd['tahun_ajaran']];
         }
 
-        $data['bulan_dibayar'] = $bulan_dibayar;
+        $data['pembayaran'] = $this->model('Pembayaran_model')->getDataByID($data['siswa']['id_pembayaran']);
 
         $this->view('templates/header', $data);
         $this->view('dashboard/transaksi/show', $data);
@@ -391,7 +358,7 @@ class Dashboard extends Controller
     {
         if ($this->model('Transaksi_model')->addTransaksi($_POST) > 0) {
             Flasher::set('success', 'Data Transaksi Berhasil Ditambah');
-            redirect('/dashboard/transaksi');
+            redirect('/dashboard/transaksi/show/');
         }
     }
 

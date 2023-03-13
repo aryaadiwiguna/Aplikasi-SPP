@@ -4,7 +4,6 @@ class history_pembayaran extends Controller
 {
     public function index()
     {
-
     }
 
     public function history()
@@ -18,4 +17,4 @@ class history_pembayaran extends Controller
         $this->view('siswa/history', $data);
         $this->view('templates/footer');
     }
-}   
+}

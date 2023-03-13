@@ -17,6 +17,13 @@ class Pengguna_model
         return $this->db->resultSet();
     }
 
+    public function getDataByUsername($username)
+    {
+        return $this->db->query("SELECT * FROM {$this->table} WHERE username = :username")
+        ->bind('username', $username)
+        ->single();
+    }
+
     public function getByUsernamePassword($username, $password)
     {
         return $this->db->query("SELECT * FROM {$this->table} WHERE username = :username AND password = :password")
