@@ -343,9 +343,9 @@ class Dashboard extends Controller
 
         $data['bulan_sorted'] = [];
 
-            foreach ($data['bulan_dibayar'] as $bd) {
-                $data['bulan_sorted'][$bd['bulan_dibayar']] = ['nominal' => $bd['nominal'], 'tahun_ajaran' => $bd['tahun_ajaran']];
-            }
+        foreach ($data['bulan_dibayar'] as $bd) {
+            $data['bulan_sorted'][$bd['bulan_dibayar']] = $bd['bulan_dibayar'];
+        }
 
 
         $this->view('templates/header', $data);

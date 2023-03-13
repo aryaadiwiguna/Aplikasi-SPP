@@ -55,7 +55,7 @@ ul li {
     border: none;
     border-bottom-right-radius: inherit;
     border-bottom-left-radius: inherit;
-    transition: 0.1s;
+    transition: 0.1s;   
 }
 
 .btn-bayar-asli.batal-bayar {
