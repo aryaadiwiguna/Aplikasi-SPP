@@ -29,26 +29,26 @@
                     <input type="hidden" name="id_pembayaran" value="<?= $data['siswa']['id_pembayaran'] ?>">
                     <div class="row">
                         <?php foreach ($data['nama_bulan'] as $key => $v) : ?>
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-top-primary shadow h-100 pt-2 position-relative">
+                            <div class="col-3 mb-4">
+                                <div class="card border-top-primary shadow h-100 position-relative pt-2">
                                     <?php if (array_key_exists($key, $data['bulan_sorted'])) : ?>
                                         <div class="card-body">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?= $v ?></div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $data['siswa']['nominal'] ?></div>
+                                            <div class="text-xs text-primary text-uppercase font-weight-bold mb-1"><?= $v ?></div>
+                                            <div class="h5 text-gray font-weight-bold mb-0"><?= $data['siswa']['nominal'] ?></div>
                                         </div>
                                         <input type="checkbox" width="100%" class="btn-bayar" checked disabled>
                                         <button class="btn-bayar-disabled">Sudah Bayar</button>
-                                    <?php else : ?>
+                                    <?php else :  ?>
                                         <div class="card-body">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?= $v ?></div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $data['siswa']['nominal'] ?></div>
+                                            <div class="text-xs text-primary text-uppercase font-weight-bold mb-1"><?= $v ?></div>
+                                            <div class="h5 text-gray font-weight-bold mb-0"><?= $data['siswa']['nominal'] ?></div>
                                         </div>
-                                        <input type="checkbox" name="bulan_dibayar[]" width="100%" class="btn-bayar" value="<?= $key ?>">
+                                        <input type="checkbox" name="bulan_dibayar[]" value="<?= $key ?>" width="100%" class="btn-bayar">
                                         <button class="btn-bayar-asli">Bayar</button>
                                     <?php endif; ?>
                                 </div>
                             </div>
-                        <?php endforeach; ?>    
+                        <?php endforeach;  ?>
                     </div>
                     <button type="submit" class="btn btn-primary mt-2" onclick="return confirm('Apakah Anda Yakin Melanjutkan Aksi ini?')">Submit</button>
                 </form>
@@ -58,33 +58,17 @@
     </div>
 </div>
 
-<div class="row mt-3">
-    <div class="col-3">
-        <div class="card border-top-primary shadow pt-2 h-100 position-relative">
-            <div class="card-body">
-                <div class="text-xs font-weight-bold text-primary text-uppercase">Januari</div>
-                <div class="h5 mb-0 font-weight-bold text-gray">100000</div>
-            </div>
-            <input type="checkbox" width="100" class="btn-bayar">
-            <button class="btn-bayar-asli">Bayar</button>
-        </div>
-    </div>
-</div>
-
-
-
-
 <script>
-    const checkBox = document.querySelectorAll('.btn-bayar');
+    const checkbox = document.querySelectorAll('.btn-bayar');
 
-    checkBox.forEach((e) => {
+    checkbox.forEach((e) => {
         e.addEventListener('click', () => {
             const Nextsib = e.nextElementSibling;
-            if(!e.checked) {
-                Nextsib.classList.remove('batal-bayar');
+            if (!e.checked) {
+                Nextsib.classList.remove('batal-bayar')
                 Nextsib.textContent = "Bayar";
             } else {
-                Nextsib.classList.add('batal-bayar');
+                Nextsib.classList.add('batal-bayar')
                 Nextsib.textContent = "Batal Bayar";
             }
         })

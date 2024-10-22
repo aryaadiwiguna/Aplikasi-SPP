@@ -271,7 +271,7 @@ class Dashboard extends Controller
     public function storePembayaran()
     {
         Middleware::setAllowed('1');
-        if ($this->model('Pembayaran_model')->addPembayaran($_POST) > 0) {
+        if ($this->model('Pembayaran_model')->insert($_POST) > 0) {
             Flasher::set('success', 'Data Pembayaran Berhasil Ditambahkan');
             redirect('/dashboard/pembayaran');
         } else {
@@ -298,7 +298,7 @@ class Dashboard extends Controller
     public function updatePembayaran()
     {
         Middleware::setAllowed('1');
-        if ($this->model('Pembayaran_model')->updatePembayaran($_POST) > 0) {
+        if ($this->model('Pembayaran_model')->update($_POST) > 0) {
             Flasher::set('success', 'Data Pembayaran Berhasil Diubah');
             redirect('/dashboard/pembayaran');
         }
@@ -307,7 +307,7 @@ class Dashboard extends Controller
     public function destroyPembayaran($id)
     {
         Middleware::setAllowed('1');
-        if ($this->model('Pembayaran_model')->deletePembayaran($id) > 0) {
+        if ($this->model('Pembayaran_model')->delete($id) > 0) {
             Flasher::set('success', 'Data Pembayaran Berhasil Dihapus');
             redirect('/dashboard/pembayaran');
         }
@@ -337,9 +337,6 @@ class Dashboard extends Controller
         ];
 
         $data['nama_bulan'] = NAMA_BULAN;
-
-        // var_dump($data['nama_bulan']);
-        // die;
 
         $data['bulan_sorted'] = [];
 

@@ -26,36 +26,35 @@ ul li {
 }
 
 .btn-bayar {
-    display: inline-block;
     position: absolute;
     bottom: 0;
-    opacity: 0;
+    display: inline-block;
     width: 100%;
     height: 30px;
+    opacity: 0;
     cursor: pointer;
 }
 
-.btn-bayar-disabled {
-    padding: 0;
-    background-color: #a7a7a7;
-    height: 30px;
+.btn-bayar-asli {
+    background-color: blue;
     color: white;
+    padding: 0;
+    height: 30px;
     border: none;
-    border-bottom-right-radius: inherit;
     border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
     transition: 0.1s;
 }
 
-.btn-bayar-asli {
-    padding: 0; 
-    background-color: blue;
-    /* background-color: red; */
-    height: 30px;
+.btn-bayar-disabled {
+    background-color: #a7a7a7;
     color: white;
+    padding: 0;
+    height: 30px;
     border: none;
-    border-bottom-right-radius: inherit;
     border-bottom-left-radius: inherit;
-    transition: 0.1s;   
+    border-bottom-right-radius: inherit;
+    transition: 0.1s;
 }
 
 .btn-bayar-asli.batal-bayar {
@@ -63,5 +62,5 @@ ul li {
 }
 
 .border-top-primary {
-    border-top: 0.25rem solid blue !important;
+    border-top: 0.25rem solid blue;
 }
